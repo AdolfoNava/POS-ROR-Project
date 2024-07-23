@@ -1,11 +1,14 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customer, only: [ :show, :edit, :update, :destroy ]
 
   # GET /customers or /customers.json
   def index
     @customers = Customer.all
   end
-
+  def search_in_new_order
+    @customers = Customer.all
+    render "customers/simple_list"
+  end
   # GET /customers/1 or /customers/1.json
   def show
   end
@@ -22,6 +25,7 @@ class CustomersController < ApplicationController
   # POST /customers or /customers.json
   def create
     @customer = Customer.new(customer_params)
+    @customer.orders_count = 0
 
     respond_to do |format|
       if @customer.save

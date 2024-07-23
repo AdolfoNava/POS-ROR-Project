@@ -1,0 +1,15 @@
+<div id="customers">
+  <% @customers.each do |customer| %>
+    <%= link_to "orders/new/#{customer.id}" do %>
+
+      <%= render "customers/simple_info", customer: customer %>
+      <p>
+
+      <% end %>
+    </p>
+  <% end %>
+</div>
+<%#= form_for @post do |f| %>
+  <%#= f.select :person_id, Person.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
+  <%#= f.submit %>
+<%# end %>
