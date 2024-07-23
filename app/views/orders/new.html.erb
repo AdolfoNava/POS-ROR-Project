@@ -28,9 +28,9 @@
   </div>
 </div>
 
-<% if params[found] %>
+<% if params[:id] %>
 <script>
-  $("#customer_order_id").val(<%= found %>)
+  $("#customer_order_id").val(<%= params[:id] %>)
   </script>
 <% else %>
   <script>
