@@ -18,4 +18,6 @@ class Order < ApplicationRecord
   has_many  :items, class_name: "Item", foreign_key: "order_id", dependent: :destroy
   belongs_to :customer, required: true, class_name: "Customer", foreign_key: "customer_id", counter_cache: true
   belongs_to :employee, required: true, class_name: "User", foreign_key: "employee_id"
+  accepts_nested_attributes_for :items
+  validates(:price, presence: true)
 end

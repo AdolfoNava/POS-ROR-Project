@@ -1,12 +1,8 @@
 <div class="col-2">
-  <%= link_to "options/#{option.id}/insert" do %>
-    <div class="card">
-      <div class="card-header text-center">
+  <%= link_to "options/#{option.id}/insert", {:style=>"text-decoration: none"} do %>
+    <div class="card bg-light option">
+      <div class="card-body text-center d-flex align-items-center justify-content-center">
         <%=option.name%> <%=number_to_currency(option.base_price)%>
-      </div>
-      <div class="card-body">
-        <div class="d-flex justify-content-center">
-        </div>
       </div>
     </div>
   <% end %>
