@@ -1,0 +1,13 @@
+<div class="col-2">
+  <%= link_to "options/#{option.id}/insert" do %>
+    <div class="card">
+      <div class="card-header text-center">
+        <%=option.name%> <%=number_to_currency(option.base_price)%>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

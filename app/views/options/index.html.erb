@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Options</h1>
+<%= link_to "New option", new_option_path %>
 
 <div id="options">
   <% @options.each do |option| %>
@@ -10,5 +11,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New option", new_option_path %>

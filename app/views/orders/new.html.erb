@@ -27,10 +27,14 @@
     </div>
   </div>
 </div>
-
+<div class="row justify-content-around py-5">
+  <% @options.each do |option| %>
+    <%=render "options/card", option: option%>
+  <%end%>
+</div>
 <% if params[:id] %>
-<script>
-  $("#customer_order_id").val(<%= params[:id] %>)
+  <script>
+    $("#customer_order_id").val(<%= params[:id] %>)
   </script>
 <% else %>
   <script>
