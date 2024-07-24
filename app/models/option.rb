@@ -10,5 +10,6 @@
 #  category_id :integer
 #
 class Option < ApplicationRecord
-  belongs_to :category, required: true, class_name: "Category", foreign_key: "name"
+  
+  belongs_to :category, required: true, class_name: "Category", foreign_key: "category_id"
 end

@@ -1,4 +1,4 @@
-<%= form_with(model: option) do |form| %>
+<%= form_for(option) do |form| %>
   <% if option.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(option.errors.count, "error") %> prohibited this option from being saved:</h2>
@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :category_id, style: "display: block" %>
-    <%= form.number_field :category_id %>
+    <%= form.select :category_id, Category.all.collect { |c| [ c.name, c.id ] }, include_blank: false %>
   </div>
 
   <div>
