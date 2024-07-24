@@ -1,7 +1,7 @@
 <div id="<%= dom_id option %>">
   <p>
     <strong>Base price:</strong>
-    <%= option.base_price %>
+    <%= number_to_currency(option.base_price) %>
   </p>
 
   <p>

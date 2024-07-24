@@ -1,7 +1,7 @@
 <div id="<%= dom_id order %>">
   <p>
     <strong>Price:</strong>
-    <%= order.price %>
+    <%= number_to_currency(order.price) %>
   </p>
 
   <p>
@@ -31,7 +31,7 @@
 
   <p>
     <strong>Pre paid:</strong>
-    <%= order.pre_paid %>
+    <%= number_to_currency(order.pre_paid) %>
   </p>
 
   <p>
