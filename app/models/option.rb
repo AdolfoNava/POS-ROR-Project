@@ -13,12 +13,14 @@ class Option < ApplicationRecord
 
   belongs_to :category, required: true, class_name: "Category", foreign_key: "category_id"
   has_many :items
-  before_validation :set_defaults
   validates(:name, presence: true)
   validates(:category_id, presence: true)
-  private
+  
+  # before_validation :set_defaults
 
-  def set_defaults
-    base_price = 0 if base_price.empty?
-  end
+  # private
+
+  # def set_defaults
+  #   base_price = 0 if base_price.empty?
+  # end
 end

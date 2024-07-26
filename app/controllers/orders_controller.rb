@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @options = Option.all
+    @order.items.new(option: Option.first)
   end
 
   # GET /orders/1/edit
@@ -24,6 +25,13 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
 
+    
+    @order.items.each do |item|
+      debugger
+      nItem = Item.new(item.attributes)
+      nItem.save
+    end
+    debugger
     respond_to do |format|
       if @order.save
         format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
@@ -66,6 +74,15 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:price, :due_date, :customer_id, :employee_id, :payment_method, :status, :pre_paid, :items_count)
+      params.require(:order)
+            .permit(:price,
+                    :due_date,
+                    :customer_id,
+                    :employee_id,
+                    :payment_method,
+                    :status,
+                    :pre_paid,
+                    :items_count,
+                    items_attributes: [:id, :quantity, :price, :name, :option_id])
     end
 end

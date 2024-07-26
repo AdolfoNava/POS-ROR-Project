@@ -8,9 +8,9 @@
 #  quantity   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  option_id  :integer
 #  order_id   :integer
-#  options_id :integer
-# 
+#
 class Item < ApplicationRecord
 
   belongs_to :order, required: true, class_name: "Order", foreign_key: "order_id", counter_cache: true
