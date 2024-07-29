@@ -25,13 +25,11 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-
+    id = Order.all.last.id
     
     @order.items.each do |item|
-      item.order_id = Order.all.count + 1
+      item.order_id = id + 1
     end
-    #Item.new(@order.items.hash)
-    debugger
     respond_to do |format|
       if @order.save
         format.html { redirect_to root_path, notice: "Order was successfully created." }
