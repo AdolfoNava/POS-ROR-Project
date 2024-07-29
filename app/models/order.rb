@@ -21,4 +21,5 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :items
   validates(:price, presence: true)
   enum status: { created: "created", cancelled: "cancelled",in_progress: "in progress", ready: "ready", completed: "completed" }
+  enum payment_method: { cash: "cash", card: "card", phone: "phone", check: "check" }
 end
