@@ -16,20 +16,18 @@
   <h3>Items</h3>
   <%= form.fields_for :items do |item_form| %>
     <div class="item-field">
-<!--        <div class="field">-->
-          <%#= item_form.number_field :quantity %>
-<!--        </div>
+      <!--        <div class="field">-->
+      <%#= item_form.number_field :quantity %>
+      <!--        </div>
         <div class="field">
           <%#= item_form.number_field :price %>-->
-<!--        </div>-->
+      <!--        </div>-->
 
-   <!-- TODO: render the item.option name-->
-        
-        <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
-        <%= item_form.text_field :name, value: item_form.object.option.name %>
-        <%= item_form.number_field :quantity, value: 1  %>
-        <%= item_form.number_field :price, value: item_form.object.option.base_price %>
-        
+      <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
+      <%= item_form.text_field :name, value: item_form.object.option.name %>
+      <%= item_form.number_field :quantity, value: 1  %>
+      <%= item_form.number_field :price, value: item_form.object.option.base_price %>
+
     </div>
   </div>
 <% end %>
@@ -51,16 +49,14 @@
 
 <%= form.hidden_field :customer_id, value: params[:cust_id] %>
 <%= form.hidden_field :employee_id, value: current_user.id %>
+<%= form.hidden_field :status, value: Order.statuses[:created]%>
 
 <div>
   <%= form.label :payment_method, style: "display: block" %>
   <%= form.text_field :payment_method %>
 </div>
 
-<div>
-  <%= form.label :status, style: "display: block" %>
-  <%= form.text_field :status %>
-</div>
+
 
 <div>
   <%= form.label :pre_paid, style: "display: block" %>
