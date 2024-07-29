@@ -49,11 +49,7 @@
   <%= form.date_field :due_date %>
 </div>
 
-<div>
-  <%= form.label :customer_id, style: "display: block" %>
-  <%= form.hidden_field :customer_id, value: params[:cust_id] %>
-</div>
-
+<%= form.hidden_field :customer_id, value: params[:cust_id] %>
 <%= form.hidden_field :employee_id, value: current_user.id %>
 
 <div>
