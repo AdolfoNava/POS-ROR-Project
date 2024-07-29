@@ -3,7 +3,10 @@ a {
 
 }
 .option{  
-  height: 80px;
+  display: flex;
   vertical-align: center;
   text-align: center;
+}
+.card:only-child {
+  flex-basis: auto;
 }

@@ -25,11 +25,11 @@
 
    <!-- TODO: render the item.option name-->
         
-        <%= item_form.object.option.name %>
         <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
-        <%= item_form.hidden_field :name, value: item_form.object.option.name %>
-        <%= item_form.hidden_field :quantity, value: 1  %>
-        <%= item_form.hidden_field :price, value: item_form.object.option.base_price %>
+        <%= item_form.text_field :name, value: item_form.object.option.name %>
+        <%= item_form.number_field :quantity, value: 1  %>
+        <%= item_form.number_field :price, value: item_form.object.option.base_price %>
+        
     </div>
   </div>
 <% end %>

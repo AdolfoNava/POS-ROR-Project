@@ -27,10 +27,9 @@ class OrdersController < ApplicationController
 
     
     @order.items.each do |item|
-      debugger
-      nItem = Item.new(item.attributes)
-      nItem.save
+      item.order_id = Order.all.count + 1
     end
+    #Item.new(@order.items.hash)
     debugger
     respond_to do |format|
       if @order.save
@@ -84,5 +83,7 @@ class OrdersController < ApplicationController
                     :pre_paid,
                     :items_count,
                     items_attributes: [:id, :quantity, :price, :name, :option_id])
+
+
     end
 end
