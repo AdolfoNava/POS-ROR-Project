@@ -9,7 +9,9 @@ class OrdersController < ApplicationController
   # GET /orders/1 or /orders/1.json
   def show
   end
-
+  def payment
+    @order = params[:order_id]
+  end
   # GET /orders/new
   def new
     @order = Order.new

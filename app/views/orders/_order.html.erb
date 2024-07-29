@@ -1,46 +1,22 @@
 <div id="<%= dom_id order %>">
-  <p>
-    <strong>Price:</strong>
-    <%= number_to_currency(order.price) %>
-  </p>
-
-  <p>
-    <strong>Due date:</strong>
-    <%= order.due_date %>
-  </p>
-
-  <p>
-    <strong>Customer:</strong>
-    <%= order.customer_id %>
-  </p>
-
-  <p>
-    <strong>Employee:</strong>
-    <%= order.employee_id %>
-  </p>
-
-  <p>
-    <strong>Payment method:</strong>
-    <%= order.payment_method %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= order.status %>
-  </p>
-
-  <p>
-    <strong>Pre paid:</strong>
-    <%= number_to_currency(order.pre_paid) %>
-  </p>
-
-  <p>
-    <strong>Items count:</strong>
+  <td>
+    <%=order.id%>
+  </td>
+  <td><%= order.customer.last_name %></td>
+  <td>
     <%= order.items_count %>
-  </p>
-
-  <% order.items.each do |item| %>
-     <%= render item %>
-  <% end %>
-
+  </td>
+  <td>
+    <% total = order.price - order.pre_paid%>
+    <%= number_to_currency(total) %>
+  </td>
+  <td>
+    <%= order.due_date %>
+  </td>
+  <td>
+    <%= link_to "Edit Order", edit_order_path(order.id) %>
+  </td>
+  <td>
+    <%=link_to "Make Payment", payment_path(order) %>
+  </td>
 </div>

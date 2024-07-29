@@ -18,8 +18,21 @@ class Order < ApplicationRecord
   has_many  :items, class_name: "Item", foreign_key: "order_id", dependent: :destroy
   belongs_to :customer, required: true, class_name: "Customer", foreign_key: "customer_id", counter_cache: true
   belongs_to :employee, required: true, class_name: "User", foreign_key: "employee_id"
-  accepts_nested_attributes_for :items
-  validates(:price, presence: true)
-  enum status: { created: "created", cancelled: "cancelled",in_progress: "in progress", ready: "ready", completed: "completed" }
+  
   enum payment_method: { cash: "cash", card: "card", phone: "phone", check: "check" }
+  enum status: { created: "created", cancelled: "cancelled",in_progress: "in progress", ready: "ready", completed: "completed" }
+
+  accepts_nested_attributes_for :items
+
+  validates(:price, presence: true)
+  validates(:due_date, presence: true)
+
+  after_initialize :init
+
+  def init
+    self.pre_paid ||= 0.0
+    self.price ||= 0.0
+    self.items_count ||= 0.0
+    self.due_date = Date.current
+  end
 end
