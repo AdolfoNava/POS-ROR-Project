@@ -1,6 +1,6 @@
 <div id="customers">
   <% @customers.each do |customer| %>
-    <%= link_to "orders/new/#{customer.id}" do %>
+    <%= link_to "./new/#{customer.id}" do %>
 
       <%= render "customers/simple_info", customer: customer %>
       <p>

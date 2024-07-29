@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @options = Option.all
+    @order.items.new(option: Option.first)
+    @customers = Customer.all
   end
 
   # GET /orders/1/edit
@@ -24,9 +26,15 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
 
+    
+    @order.items.each do |item|
+      item.order_id = Order.all.count + 1
+    end
+    #Item.new(@order.items.hash)
+    debugger
     respond_to do |format|
       if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
+        format.html { redirect_to root_path, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +74,17 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:price, :due_date, :customer_id, :employee_id, :payment_method, :status, :pre_paid, :items_count)
+      params.require(:order)
+            .permit(:price,
+                    :due_date,
+                    :customer_id,
+                    :employee_id,
+                    :payment_method,
+                    :status,
+                    :pre_paid,
+                    :items_count,
+                    items_attributes: [:id, :quantity, :price, :name, :option_id])
+
+
     end
 end

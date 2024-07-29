@@ -10,6 +10,13 @@ class OptionsController < ApplicationController
   def show
   end
 
+  # def insert
+  #   @option_selected = Options.find(params[:id])
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
+
   # GET /options/new
   def new
     @option = Option.new

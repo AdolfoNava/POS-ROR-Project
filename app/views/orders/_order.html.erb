@@ -39,4 +39,8 @@
     <%= order.items_count %>
   </p>
 
+  <% order.items.each do |item| %>
+     <%= render item %>
+  <% end %>
+
 </div>

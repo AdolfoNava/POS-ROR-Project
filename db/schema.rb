@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_22_164005) do
     t.string "name"
     t.float "price"
     t.integer "order_id"
+    t.integer "option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,7 +65,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_22_164005) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "MODEL"
     t.string "name"
     t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
