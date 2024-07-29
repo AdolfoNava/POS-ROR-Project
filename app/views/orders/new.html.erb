@@ -23,7 +23,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <!--Your modal content here... (This will be a form here)-->
+        <%=render "customers/simple_list" %>
       </div>
       <div class="modal-footer">
         <%= link_to "New Customer", new_customer_path, class: "btn btn-secondary"%>
@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<% if params[:id] %>
+<% if params[:cust_id] %>
   <script>
     $("#customer_order_id").val(<%= params[:id] %>)
   </script>

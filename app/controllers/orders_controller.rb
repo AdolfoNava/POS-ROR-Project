@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @options = Option.all
     @order.items.new(option: Option.first)
+    @customers = Customer.all
   end
 
   # GET /orders/1/edit
@@ -33,7 +34,7 @@ class OrdersController < ApplicationController
     debugger
     respond_to do |format|
       if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
+        format.html { redirect_to root_path, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }

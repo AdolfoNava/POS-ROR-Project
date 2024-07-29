@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "menus#main"
   get "customers/simple" => "customers#search_in_new_order", as: :find_customer
   get "orders/new" => "orders#new", as: :new_order
-  get "customers/orders/new/:id" => "orders#new", as: :order
+  get "orders/new/:cust_id" => "orders#new", as: :returning_customer_order
   get "database" => "menus#database"
   resources :options
   resources :categories
