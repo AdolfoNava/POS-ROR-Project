@@ -3,12 +3,16 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
+    @orders = Order.all.where.not(status: Order.statuses[:completed])
+  end
+  
+  def all
     @orders = Order.all
   end
-
   # GET /orders/1 or /orders/1.json
   def show
   end
+
   def payment
     @order = Order.find(params[:order_id])
   end
@@ -23,8 +27,8 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @options = Option.all
-    @all_options = Order.statuses # Assuming you have an Option model
-    @excluded_keys = ["created", "completed"] # Keys you want to exclude, can also be dynamic
+    @all_options = Order.statuses
+    @excluded_keys = ["created", "completed"]
     @filtered_options = @all_options.reject { |_, v| @excluded_keys.include?(v) }
   end
 
@@ -87,8 +91,13 @@ class OrdersController < ApplicationController
                     :status,
                     :pre_paid,
                     :items_count,
-                    items_attributes: [:id, :quantity, :price, :name, :option_id])
-
-
+                    items_attributes: [
+                      :id, 
+                      :quantity, 
+                      :price, 
+                      :name, 
+                      :option_id
+                      ]
+                    )
     end
 end
