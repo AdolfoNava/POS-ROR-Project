@@ -29,51 +29,53 @@
       <%= item_form.number_field :price,  step: :any , value: item_form.object.option.base_price %>
 
     </div>
-<% end %>
-<%= field_set_tag "Items", id: "items-selected" do %>
 
-<% end %>
+  <% end %>
+  <%= field_set_tag "Items", id: "items-selected" do %>
 
-<%#= link_to_add_association 'Add Item', form, :items %>
+  <% end %>
 
-<div>
-  <%= form.label :price, style: "display: block" %>
-  <%= form.number_field :price, step: :any%>
-</div>
+  <%#= link_to_add_association 'Add Item', form, :items %>
 
-<div>
-  <%= form.label :due_date, style: "display: block" %>
-  <%= form.date_field :due_date %>
-</div>
-<%if params[:cust_id]%>
-  <%= form.hidden_field :customer_id, value: params[:cust_id] %>
-<% else %>
-  <%= form.hidden_field :customer_id, value: order.customer_id %>
-<% end %>
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.number_field :price, step: :any%>
+  </div>
 
-<%= form.hidden_field :employee_id, value: current_user.id %>
-<% if params[:cust_id] %>
-  <%= form.hidden_field :status, value: Order.statuses[:created]%>
-<% else %>
-  <%= form.select :status, Order.statuses.keys %>
-<% end %>
-<div>
-  <%= form.label :payment_method, style: "display: block" %>
-  <%= form.text_field :payment_method %>
-</div>
+  <div>
+    <%= form.label :due_date, style: "display: block" %>
+    <%= form.date_field :due_date %>
+  </div>
+  <%if params[:cust_id]%>
+    <%= form.hidden_field :customer_id, value: params[:cust_id] %>
+  <% else %>
+    <%= form.hidden_field :customer_id, value: order.customer_id %>
+  <% end %>
 
-<div>
-  <%= form.label :pre_paid, style: "display: block" %>
-  <%= form.text_field :pre_paid %>
-</div>
+  <%= form.hidden_field :employee_id, value: current_user.id %>
+  <% if params[:cust_id] %>
+    <%= form.hidden_field :status, value: Order.statuses[:created]%>
+  <% else %>
+    <%= form.label :status, style: "display: block"%>
+    <%= form.select :status, Order.statuses.keys %>
+  <% end %>
+  <div>
+    <%= form.label :payment_method, style: "display: block" %>
+    <%= form.text_field :payment_method %>
+  </div>
 
-<div>
-  <%= form.label :items_count, style: "display: block" %>
-  <%= form.number_field :items_count %>
-</div>
+  <div>
+    <%= form.label :pre_paid, style: "display: block" %>
+    <%= form.text_field :pre_paid %>
+  </div>
 
-<div>
-  <%= form.submit %>
-</div>
+  <div>
+    <%= form.label :items_count, style: "display: block" %>
+    <%= form.number_field :items_count %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>
 <button id="addItem">Add Item</button>

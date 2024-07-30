@@ -1,0 +1,18 @@
+<h1>Order id: <%=@order.id%></h1>
+<%=@order.customer.last_name%>
+<%=form_with(model: @order) do |form|%>
+  <%= form.hidden_field :status, value: Order.statuses[:completed] %>
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%=form.number_field :price, value: @order.price, disabled: true%>
+  </div>
+
+  <%= form.label :payment_method, "Cash",value: Order.payment_methods[:cash]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:cash]%>
+  <%= form.label :payment_method, "Card",value: Order.payment_methods[:card]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:card]%>
+  <%= form.label :payment_method,"Phone", value: Order.payment_methods[:phone]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:phone]%>
+  <%= form.label :payment_method, "Check",value: Order.payment_methods[:check]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:check]%>
+<% end %>

@@ -1,6 +1,12 @@
 <h1>Editing order: <%=@order.id%> </h1>
-
-<%= render "form", order: @order %>
+<div>
+  <div class="row justify-content-around py-5">
+    <% @options.each do |option| %>
+      <%=render "options/card", option: option%>
+    <%end%>
+  </div>
+  <%= render "form", order: @order %>
+</div>
 
 <br>
 

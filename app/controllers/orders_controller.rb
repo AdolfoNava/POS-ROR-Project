@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   def show
   end
   def payment
-    @order = params[:order_id]
+    @order = Order.find(params[:order_id])
   end
   # GET /orders/new
   def new
