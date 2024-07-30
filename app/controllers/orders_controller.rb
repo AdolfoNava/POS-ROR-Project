@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @options = Option.all
+    @new = true
     @order.items.new(option: Option.first)
     @customers = Customer.all
   end

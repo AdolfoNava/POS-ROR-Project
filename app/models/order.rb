@@ -27,12 +27,14 @@ class Order < ApplicationRecord
   validates(:price, presence: true)
   validates(:due_date, presence: true)
 
-  after_initialize :init
+  after_initialize(:init)
 
   def init
     self.pre_paid ||= 0.0
     self.price ||= 0.0
     self.items_count ||= 0.0
-    self.due_date = Date.current
+    if self.due_date.present?
+      self.due_date = Date.current
+    end
   end
 end

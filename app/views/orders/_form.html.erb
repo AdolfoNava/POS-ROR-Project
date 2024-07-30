@@ -53,7 +53,7 @@
   <% end %>
 
   <%= form.hidden_field :employee_id, value: current_user.id %>
-  <% if params[:cust_id] %>
+  <% if params[:cust_id] || @new %>
     <%= form.hidden_field :status, value: Order.statuses[:created]%>
   <% else %>
     <%= form.label :status, "Order status: "%>
