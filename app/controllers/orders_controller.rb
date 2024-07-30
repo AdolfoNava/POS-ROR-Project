@@ -9,7 +9,9 @@ class OrdersController < ApplicationController
   # GET /orders/1 or /orders/1.json
   def show
   end
-
+  def payment
+    @order = Order.find(params[:order_id])
+  end
   # GET /orders/new
   def new
     @order = Order.new
@@ -20,6 +22,10 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @options = Option.all
+    @all_options = Order.statuses # Assuming you have an Option model
+    @excluded_keys = ["created", "completed"] # Keys you want to exclude, can also be dynamic
+    @filtered_options = @all_options.reject { |_, v| @excluded_keys.include?(v) }
   end
 
   # POST /orders or /orders.json
