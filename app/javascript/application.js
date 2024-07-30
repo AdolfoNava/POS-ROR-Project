@@ -8,4 +8,5 @@ import jquery from "jquery";
 window.jQuery = jquery;
 window.$ = jquery;
 import Rails from "@rails/ujs"
+import "./payment";
 Rails.start();

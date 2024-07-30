@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @options = Option.all
   end
 
   # POST /orders or /orders.json

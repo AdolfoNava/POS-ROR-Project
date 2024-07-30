@@ -1,18 +1,29 @@
 <h1>Order id: <%=@order.id%></h1>
-<%=@order.customer.last_name%>
-<%=form_with(model: @order) do |form|%>
+<h2><%=@order.customer.last_name%></h2>
+<%=form_with(model: @order, local: true) do |form|%>
   <%= form.hidden_field :status, value: Order.statuses[:completed] %>
   <div>
-    <%= form.label :price, style: "display: block" %>
-    <%=form.number_field :price, value: @order.price, disabled: true%>
+    <%= form.label :price, "Total Due:"%>
+    <%=form.number_field :price, value: @order.price-@order.pre_paid,id: "order_price", readonly: true%>
+  </div>
+
+  <div>
+    <label for="paying">Pays:</label>
+    <input type="number" id="paying" value="0.00" oninput="calculateChange()"  >
+  </div>
+  <div>
+    <label for="change">Change: </label>
+    <input type="number" name="change" id="change" value="0.00" readonly>
   </div>
 
   <%= form.label :payment_method, "Cash",value: Order.payment_methods[:cash]%>
-  <%= form.radio_button :payment_method, Order.payment_methods[:cash]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:cash], onchange: "updateChange()" %>
   <%= form.label :payment_method, "Card",value: Order.payment_methods[:card]%>
-  <%= form.radio_button :payment_method, Order.payment_methods[:card]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:card], onchange: "updateChange()" %>
   <%= form.label :payment_method,"Phone", value: Order.payment_methods[:phone]%>
-  <%= form.radio_button :payment_method, Order.payment_methods[:phone]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:phone], onchange: "updateChange()" %>
   <%= form.label :payment_method, "Check",value: Order.payment_methods[:check]%>
-  <%= form.radio_button :payment_method, Order.payment_methods[:check]%>
+  <%= form.radio_button :payment_method, Order.payment_methods[:check], onchange: "updateChange()" %>
+
+  <%= form.submit %>
 <% end %>
