@@ -26,10 +26,9 @@
       <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
       <%= item_form.text_field :name, value: item_form.object.option.name %>
       <%= item_form.number_field :quantity, value: 1  %>
-      <%= item_form.number_field :price, value: item_form.object.option.base_price %>
+      <%= item_form.number_field :price,  step: :any , value: item_form.object.option.base_price %>
 
     </div>
-  </div>
 <% end %>
 <%= field_set_tag "Items", id: "items-selected" do %>
 
@@ -39,18 +38,25 @@
 
 <div>
   <%= form.label :price, style: "display: block" %>
-  <%= form.text_field :price %>
+  <%= form.number_field :price, step: :any%>
 </div>
 
 <div>
   <%= form.label :due_date, style: "display: block" %>
   <%= form.date_field :due_date %>
 </div>
+<%if params[:cust_id]%>
+  <%= form.hidden_field :customer_id, value: params[:cust_id] %>
+<% else %>
+  <%= form.hidden_field :customer_id, value: order.customer_id %>
+<% end %>
 
-<%= form.hidden_field :customer_id, value: params[:cust_id] %>
 <%= form.hidden_field :employee_id, value: current_user.id %>
-<%= form.hidden_field :status, value: Order.statuses[:created]%>
-
+<% if params[:cust_id] %>
+  <%= form.hidden_field :status, value: Order.statuses[:created]%>
+<% else %>
+  <%= form.select :status, Order.statuses.keys %>
+<% end %>
 <div>
   <%= form.label :payment_method, style: "display: block" %>
   <%= form.text_field :payment_method %>
