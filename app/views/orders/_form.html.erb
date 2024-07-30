@@ -1,5 +1,5 @@
-<%= order.inspect %>
-<%= order.items.inspect %>
+<%#= order.inspect %>
+<%#= order.items.inspect %>
 
 <%= form_with(model: order) do |form| %>
   <% if order.errors.any? %>
@@ -56,13 +56,9 @@
   <% if params[:cust_id] %>
     <%= form.hidden_field :status, value: Order.statuses[:created]%>
   <% else %>
-    <%= form.label :status, style: "display: block"%>
-    <%= form.select :status, Order.statuses.keys %>
+    <%= form.label :status, "Order status: "%>
+    <%= form.select :status, @filtered_options.keys.map { |k| [k.humanize, k] } %>
   <% end %>
-  <div>
-    <%= form.label :payment_method, style: "display: block" %>
-    <%= form.text_field :payment_method %>
-  </div>
 
   <div>
     <%= form.label :pre_paid, style: "display: block" %>
