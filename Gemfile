@@ -5,6 +5,8 @@ ruby "3.2.1"
 
 gem "cocoon"
 
+gem "kaminari"
+
 gem 'paper_trail'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"

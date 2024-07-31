@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
 
   # GET /customers or /customers.json
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(10)
   end
   def search_in_new_order
     @customers = Customer.all
