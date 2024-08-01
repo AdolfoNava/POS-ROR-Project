@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "menus#main"
   get "database" => "menus#database"
   get "orders/new" => "orders#new", as: :new_order
+  get "orders/new/:option_id/insert" => "options#insert", as: :add_option_as_item
   get "customers/simple" => "customers#search_in_new_order", as: :find_customer
   get "orders/new/:cust_id" => "orders#new", as: :returning_customer_order
   get 'users/index' => "users#index", as: :list_users

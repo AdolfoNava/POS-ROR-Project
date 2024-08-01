@@ -10,12 +10,13 @@ class OptionsController < ApplicationController
   def show
   end
 
-  # def insert
-  #   @option_selected = Options.find(params[:id])
-  #   respond_to do |format|
-  #     format.js
-  #   end
-  # end
+  def insert
+    @option_selected = Option.find(params[:option_id])
+    respond_to do |format|
+      format.html {redirect_back fallback_location: root_path, notice: "Item Added" }
+      format.js
+    end
+  end
 
   # GET /options/new
   def new

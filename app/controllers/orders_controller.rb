@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @options = Option.all
+    @new = true
     @order.items.new(option: Option.first)
     @customers = Customer.all
   end
@@ -23,8 +24,8 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @options = Option.all
-    @all_options = Order.statuses # Assuming you have an Option model
-    @excluded_keys = ["created", "completed"] # Keys you want to exclude, can also be dynamic
+    @all_options = Order.statuses
+    @excluded_keys = ["created", "completed"] 
     @filtered_options = @all_options.reject { |_, v| @excluded_keys.include?(v) }
   end
 
