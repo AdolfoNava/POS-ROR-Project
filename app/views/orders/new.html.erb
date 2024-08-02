@@ -18,8 +18,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myModalLabel">Find Customer</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
         </button>
       </div>
       <div class="modal-body">
@@ -27,16 +27,54 @@
       </div>
       <div class="modal-footer">
         <%= link_to "New Customer", new_customer_path, class: "btn btn-secondary"%>
-
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 
-<% if params[:cust_id] %>
-  <script>
-    $("#customer_order_id").val(<%= params[:id] %>)
+<% if params[:cust_id].present? %>
+  <%# <script>
+    $("#customer_order_id").val(<%= params[:cust_id]) %>
+  <%# </script> %>
+    <script>
+      let count = 0;
+    function addToOrder(option) {
+    let elements = $(`#option-${option}`).children("p");
+    console.log($(elements[0]).text());
+    console.log($(elements[1]).text());
+
+    let quantityinput = $('<input>')
+    .attr('type', 'number')
+    .attr('name',`order[items_attributes][${count}][quantity]`)
+    .attr('id', `order_items_attributes_${count}_quantity`)
+    .attr('value',1)
+    .addClass("numeric integer required");
+
+    let priceinput = $('<input>')
+    .attr('type', 'number')
+    .attr('name',`order[items_attributes][${count}][price]`)
+    .attr('id', `order_items_attributes_${count}_price`)
+    .attr('value', $(elements[1]).text());
+
+    let optioninput = $('<input>')
+    .attr('type', 'hidden')
+    .attr('name',`order[items_attributes][${count}][option_id]`)
+    .attr('id', `order_items_attributes_${count}_option_id`)
+    .attr('value', option);
+
+    let nameinput = $('<input>')
+    .attr('type', 'text')
+    .attr('name',`order[items_attributes][${count}][name]`)
+    .attr('id', `order_items_attributes_${count}_name`)
+    .attr('value', $(elements[0]).text())
+    .addClass("string required");
+
+    $('#items-selected').append(nameinput);
+    $('#items-selected').append(quantityinput);
+    $('#items-selected').append(optioninput);
+    $('#items-selected').append(priceinput);
+    count++;
+    }
   </script>
 <% else %>
   <script>

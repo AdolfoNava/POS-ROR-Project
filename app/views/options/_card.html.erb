@@ -1,9 +1,16 @@
 <div class="col-2">
-  <%= link_to add_option_as_item_path(option.id), {:style=>"text-decoration: none"} do %>
+  <a href="#" style="text-decoration: none" id="option-<%=option.id%>" onclick="addToOrder(<%=option.id%>)">
+    <p hidden><%=option.name%></p>
+    <p hidden><%=option.base_price%></p>
+
     <div class="card bg-light option">
       <div class="card-body text-center d-flex align-items-center justify-content-center">
-        <%=option.name%> <%=number_to_currency(option.base_price)%>
+        <%=option.name%>
+        <%=number_to_currency(option.base_price)%>
       </div>
     </div>
-  <% end %>
+  </a>
 </div>
+
+<%# <%= link_to "#", {:style=>"text-decoration: none"} id: "option-#{option.id}" do %>
+  <%# end %>

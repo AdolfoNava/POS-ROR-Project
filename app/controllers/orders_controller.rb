@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @options = Option.all
     @new = true
-    @order.items.new(option: Option.first)
+    # @order.items.new(option: Option.first)
     @customers = Customer.all
   end
 
@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
     id = Order.all.last.id
     
     @order.items.each do |item|
+      @order.price+=item.price 
       item.order_id = id + 1
     end
     respond_to do |format|
