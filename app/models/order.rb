@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   belongs_to :employee, required: true, class_name: "User", foreign_key: "employee_id"
   
   enum payment_method: { cash: "cash", card: "card", phone: "phone", check: "check" }
-  enum status: { created: "created", cancelled: "cancelled",in_progress: "in progress", ready: "ready", completed: "completed" }
+  enum status: { created: "created", in_progress: "in progress", ready: "ready", cancelled: "cancelled", completed: "completed" }
 
   accepts_nested_attributes_for :items
 
@@ -33,6 +33,5 @@ class Order < ApplicationRecord
     self.pre_paid ||= 0.0
     self.price ||= 0.0
     self.items_count ||= 0.0
-    self.due_date = Date.current
   end
 end

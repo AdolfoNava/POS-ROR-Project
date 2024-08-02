@@ -11,8 +11,9 @@ class OptionsController < ApplicationController
   end
 
   # def insert
-  #   @option_selected = Options.find(params[:id])
+  #   @option_selected = Option.find(params[:option_id])
   #   respond_to do |format|
+  #     format.html {redirect_back fallback_location: returning_customer_order_path(params[:cust_id]), notice: "Item Added" }
   #     format.js
   #   end
   # end

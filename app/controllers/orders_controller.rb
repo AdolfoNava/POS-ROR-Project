@@ -16,15 +16,16 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @options = Option.all
-    @order.items.new(option: Option.first)
+    @new = true
+    # @order.items.new(option: Option.first)
     @customers = Customer.all
   end
 
   # GET /orders/1/edit
   def edit
     @options = Option.all
-    @all_options = Order.statuses # Assuming you have an Option model
-    @excluded_keys = ["created", "completed"] # Keys you want to exclude, can also be dynamic
+    @all_options = Order.statuses
+    @excluded_keys = ["created", "completed"] 
     @filtered_options = @all_options.reject { |_, v| @excluded_keys.include?(v) }
   end
 
@@ -34,6 +35,7 @@ class OrdersController < ApplicationController
     id = Order.all.last.id
     
     @order.items.each do |item|
+      @order.price+=item.price 
       item.order_id = id + 1
     end
     respond_to do |format|
