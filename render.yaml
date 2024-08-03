@@ -1,9 +1,3 @@
-databases: # this section provides some additional database configuration
-  - name: Valenti-Cleaners-POS
-    plan: free
-    databaseName: valenti_cleaners_pos
-    user: valenti_cleaners_pos_user
-    ipAllowList: []
 services:
   - type: web
     runtime: ruby
@@ -18,4 +12,9 @@ services:
         fromDatabase:
           name: Valenti-Cleaners-POS
           property: connectionString
-    
+databases: # this section provides some additional database configuration
+  - name: Valenti-Cleaners-POS
+    plan: free
+    databaseName: valenti_cleaners_pos
+    user: valenti_cleaners_pos_user
+    ipAllowList: []
