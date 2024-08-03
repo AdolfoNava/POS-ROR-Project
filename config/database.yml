@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: rails_template_production
-  username: rails_template
-  password: <%= ENV["RAILS_TEMPLATE_DATABASE_PASSWORD"] %>
+  database: valenti_cleaners_pos
+  username: valenti_cleaners_pos_user
+  password: <%= ENV["VALENTI_CLEANERS_POS_PASSWORD"] %>
