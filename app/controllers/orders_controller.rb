@@ -1,19 +1,36 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[ show payment edit update destroy ]
 
   # GET /orders or /orders.json
   def index
+    @breadcrumbs = [
+      {content: "Main Menu", href: "main"},
+      {content: "All orders", href: :index},
+    ]
     @orders = Order.all
   end
 
   # GET /orders/1 or /orders/1.json
   def show
+    @breadcrumbs = [
+      {content: "Main Menu", href: "main"},
+      {content: "All Orders", href: orders_path},
+      {content: "Showing Order", href: payment_url(@order.id)},
+    ]
   end
   def payment
-    @order = Order.find(params[:order_id])
+    @breadcrumbs = [
+      {content: "Main Menu", href: "main"},
+      {content: "All Orders", href: orders_path},
+      {content: "Paying for Order", href: payment_url(@order.id)},
+    ]
   end
   # GET /orders/new
   def new
+    @breadcrumbs = [
+      {content: "Main Menu", href: "main"},
+      {content: "New Order", href: "#"},
+    ]
     @order = Order.new
     @options = Option.all
     @new = true
@@ -23,6 +40,10 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @breadcrumbs = [
+      {content: "Main Menu", href: "main"},
+      {content: "Edit Order", href: order_url(@order)},
+    ]
     @options = Option.all
     @all_options = Order.statuses
     @excluded_keys = ["created", "completed"] 
@@ -43,6 +64,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to root_path, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
+        @options = Option.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

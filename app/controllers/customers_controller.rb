@@ -3,6 +3,11 @@ class CustomersController < ApplicationController
 
   # GET /customers or /customers.json
   def index
+    @breadcrumbs = [
+      {content: "Main Menu", href: "main"},
+      {content: "Business Management", href: database_path},
+      {content: "All Customers", href: customers_path},
+    ]
     @customers = Customer.all
   end
   def search_in_new_order
