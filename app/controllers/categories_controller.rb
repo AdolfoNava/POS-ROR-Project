@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories or /categories.json
   def index
     @breadcrumbs = [
-      {content: "Main Menu", href: "main"},
+      {content: "Main Menu", href: "../main"},
       {content: "Business Management", href: database_path},
       {content: "All Categories", href: categories_path},
     ]
@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1 or /categories/1.json
   def show
     @breadcrumbs = [
-      {content: "Main Menu", href: "main"},
+      {content: "Main Menu", href: "../main"},
       {content: "Business Management", href: database_path},
       {content: "All Categories", href: categories_path},
       {content: "Category #{@category.name}", href: category_path(@category)},
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @breadcrumbs = [
-      {content: "Main Menu", href: "main"},
+      {content: "Main Menu", href: "../main"},
       {content: "Business Management", href: database_path},
       {content: "All Categories", href: categories_path},
       {content: "New Category", href: new_category_path},
@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @breadcrumbs = [
-      {content: "Main Menu", href: "main"},
+      {content: "Main Menu", href: "../main"},
       {content: "Business Management", href: database_path},
       {content: "All Categories", href: categories_path},
       {content: "Edit Category #{@category.name}", href: edit_category_path(@category)},

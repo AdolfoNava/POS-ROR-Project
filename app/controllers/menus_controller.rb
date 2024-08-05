@@ -4,13 +4,13 @@ class MenusController < ApplicationController
   end
   def main
     @breadcrumbs = [
-      {content: "Main Menu", href: "main"},
+      {content: "Main Menu", href: "../main"},
     ]
     render "menus/main"
   end
   def database
     @breadcrumbs = [
-      {content: "Main Menu", href: "main"},
+      {content: "Main Menu", href: "../main"},
       {content: "Business Management", href: database_path},
     ]
     render "menus/database"
