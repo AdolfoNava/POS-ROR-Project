@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders or /orders.json
   def index
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "All orders", href: :index},
     ]
     @orders = Order.page(params[:page]).per(10)
@@ -13,14 +13,14 @@ class OrdersController < ApplicationController
   # GET /orders/1 or /orders/1.json
   def show
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "All Orders", href: orders_path},
       {content: "Showing Order", href: payment_url(@order.id)},
     ]
   end
   def payment
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "All Orders", href: orders_path},
       {content: "Paying for Order", href: payment_url(@order.id)},
     ]
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "New Order", href: "#"},
     ]
     @order = Order.new
@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "Edit Order", href: order_url(@order)},
     ]
     @options = Option.all
@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
     end
     respond_to do |format|
       if @order.save
-        format.html { redirect_to root_path, notice: "Order was successfully created." }
+        format.html { redirect_to main_path, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
         @options = Option.all

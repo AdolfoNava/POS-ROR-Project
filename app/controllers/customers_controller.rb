@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   # GET /customers or /customers.json
   def index
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "Business Management", href: database_path},
       {content: "All Customers", href: customers_path},
     ]

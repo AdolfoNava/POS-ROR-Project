@@ -1,6 +1,3 @@
-<%#= order.inspect %>
-<%#= order.items.inspect %>
-
 <%= form_with(model: order) do |form| %>
   <% if order.errors.any? %>
     <div style="color: red">
@@ -16,12 +13,6 @@
 
   <%= field_set_tag "Items", id: "items-selected" do %>
     <%= form.fields_for :items do |item_form| %>
-      <!--        <div class="field">-->
-      <%#= item_form.number_field :quantity %>
-      <!--        </div>
-        <div class="field">
-          <%#= item_form.number_field :price %>-->
-      <!--        </div>-->
 
       <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
       <%= item_form.text_field :name, value: item_form.object.option.name %>
@@ -31,9 +22,7 @@
     <% end %>
 
   <% end %>
-
-  <%#= link_to_add_association 'Add Item', form, :items %>
-
+  
   <div>
     <%= form.label :price, style: "display: block" %>
     <%= form.number_field :price, step: :any%>
@@ -71,47 +60,8 @@
     <%= form.submit %>
   </div>
 <% end %>
-<script>
-  let count = <%=order.items.count%>;
-      function addToOrder(option) {
-      let elements = $(`#option-${option}`).children("p");
-      console.log($(elements[0]).text());
-      console.log($(elements[1]).text());
-      let div = $('<div>');
-      let quantityinput = $('<input>')
-      .attr('type', 'number')
-      .attr('name',`order[items_attributes][${count}][quantity]`)
-      .attr('id', `order_items_attributes_${count}_quantity`)
-      .attr('value',1)
-      .addClass("numeric integer required");
+<%=javascript_tag do %>
+  let count = <%=@order.items.count%>
+<% end %>
 
-      let priceinput = $('<input>')
-      .attr('type', 'number')
-      .attr('name',`order[items_attributes][${count}][price]`)
-      .attr('id', `order_items_attributes_${count}_price`)
-      .attr('value', $(elements[1]).text());
-
-      let optioninput = $('<input>')
-      .attr('type', 'hidden')
-      .attr('name',`order[items_attributes][${count}][option_id]`)
-      .attr('id', `order_items_attributes_${count}_option_id`)
-      .attr('value', option);
-
-      let nameinput = $('<input>')
-      .attr('type', 'text')
-      .attr('name',`order[items_attributes][${count}][name]`)
-      .attr('id', `order_items_attributes_${count}_name`)
-      .attr('value', $(elements[0]).text())
-      .addClass("string required");
-      div.append(quantityinput);
-      div.append(nameinput);
-      div.append(optioninput);
-      div.append(priceinput);
-      $("#items-selected").append(div);
-      // $('#items-selected').append(nameinput);
-      // $('#items-selected').append(quantityinput);
-      // $('#items-selected').append(optioninput);
-      // $('#items-selected').append(priceinput);
-      count++;
-      }
-</script>
+<%=javascript_include_tag 'orders' %>

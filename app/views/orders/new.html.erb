@@ -32,51 +32,7 @@
   </div>
 </div>
 
-<% if params[:cust_id].present? %>
-  <%# <script>
-    $("#customer_order_id").val(<%= params[:cust_id]) %>
-  <%# </script> %>
-    <script>
-      let count = 0;
-    function addToOrder(option) {
-    let elements = $(`#option-${option}`).children("p");
-    console.log($(elements[0]).text());
-    console.log($(elements[1]).text());
-
-    let quantityinput = $('<input>')
-    .attr('type', 'number')
-    .attr('name',`order[items_attributes][${count}][quantity]`)
-    .attr('id', `order_items_attributes_${count}_quantity`)
-    .attr('value',1)
-    .addClass("numeric integer required");
-
-    let priceinput = $('<input>')
-    .attr('type', 'number')
-    .attr('name',`order[items_attributes][${count}][price]`)
-    .attr('id', `order_items_attributes_${count}_price`)
-    .attr('value', $(elements[1]).text());
-
-    let optioninput = $('<input>')
-    .attr('type', 'hidden')
-    .attr('name',`order[items_attributes][${count}][option_id]`)
-    .attr('id', `order_items_attributes_${count}_option_id`)
-    .attr('value', option);
-
-    let nameinput = $('<input>')
-    .attr('type', 'text')
-    .attr('name',`order[items_attributes][${count}][name]`)
-    .attr('id', `order_items_attributes_${count}_name`)
-    .attr('value', $(elements[0]).text())
-    .addClass("string required");
-
-    $('#items-selected').append(nameinput);
-    $('#items-selected').append(quantityinput);
-    $('#items-selected').append(optioninput);
-    $('#items-selected').append(priceinput);
-    count++;
-    }
-  </script>
-<% else %>
+<% if !params[:cust_id].present? %>
   <script>
     document.addEventListener('DOMContentLoaded',function(){
       $('#myModal').modal('show');

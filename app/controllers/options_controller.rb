@@ -4,7 +4,7 @@ class OptionsController < ApplicationController
   # GET /options or /options.json
   def index
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "Business Management", href: database_path},
       {content: "All Options", href: options_path},
     ]
@@ -14,7 +14,7 @@ class OptionsController < ApplicationController
   # GET /options/1 or /options/1.json
   def show
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "Business Management", href: database_path},
       {content: "All Options", href: options_path},
       {content: "Option #{@option.name}", href: option_path(@option)},
@@ -32,7 +32,7 @@ class OptionsController < ApplicationController
   # GET /options/new
   def new
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "Business Management", href: database_path},
       {content: "All Options", href: options_path},
       {content: "New Option", href: new_option_path},
@@ -43,7 +43,7 @@ class OptionsController < ApplicationController
   # GET /options/1/edit
   def edit
     @breadcrumbs = [
-      {content: "Main Menu", href: "../main"},
+      {content: "Main Menu", href: main_path},
       {content: "Business Management", href: database_path},
       {content: "All Options", href: options_path},
       {content: "Edit Option", href: edit_option_path},
