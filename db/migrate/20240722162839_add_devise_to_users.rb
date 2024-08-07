@@ -33,7 +33,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.1]
       # t.datetime :locked_at
       
       t.string :name
-      t.boolean :admin
+      t.boolean :admin, default: false, null: false
 
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rails Template</title>
+    <title>Valenti Cleaners</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,9 +12,12 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <div class="container">
+      <% if notice  %>
+        <p class="alert alert-success" role="alert" ><%= notice %></p>
+      <% elsif alert%>
+        <p class="alert alert-danger" role="alert"><%= alert %></p>
+      <% end %>
       <%= render "shared/breadcrumbs" %>
       <%= yield %>
     </div>

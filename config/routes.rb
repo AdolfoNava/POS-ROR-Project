@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  root to: "menus#landing"
-  get "main" => "menus#main"
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users
+  unauthenticated do
+    root "menus#landing", as: :landing
+  end
+  authenticated :user do
+    root "menus#main", as: :main
+  end
+  # get "main" => "menus#main", as: :main 
   get "database" => "menus#database"
   get "orders/new" => "orders#new", as: :new_order
   get "customers/simple" => "customers#search_in_new_order", as: :find_customer
@@ -9,13 +16,8 @@ Rails.application.routes.draw do
   get "orders/pay/:id" => "orders#payment", as: :payment
   resources :options
   resources :categories
-  devise_for :users
   resources :customers
   resources :orders
   resources :items
-
-  # This is a blank app! Pick your first screen, build out the RCAV, and go from there. E.g.:
-
-  # get "/your_first_screen" => "pages#first"
 
 end

@@ -53,7 +53,11 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-    id = Order.all.last.id
+    if order.all.last.id != nil
+      id = Order.all.last.id
+    else
+      id = 0
+    end
     
     @order.items.each do |item|
       @order.price+=item.price 

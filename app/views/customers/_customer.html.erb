@@ -1,32 +1,28 @@
 <div id="<%= dom_id customer %>">
-  <p>
-    <strong>Phone number:</strong>
+  <td>
     <%= customer.phone_number %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Email:</strong>
+  <td>
     <%= customer.email %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Last name:</strong>
+  <td>
     <%= customer.last_name %>
-  </p>
+  </td>
 
-  <p>
-    <strong>First name:</strong>
+  <td>
     <%= customer.first_name %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Address:</strong>
+  <td>
     <%= customer.address %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Orders count:</strong>
+  <td>
     <%= customer.orders_count %>
-  </p>
-
+  </td>
+  <td>
+    <%= link_to "Show this customer", customer %>
+  </td>
 </div>
