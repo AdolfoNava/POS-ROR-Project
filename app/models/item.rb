@@ -13,7 +13,7 @@
 #
 class Item < ApplicationRecord
 
-  belongs_to :order, required: false, class_name: "Order", foreign_key: "order_id", counter_cache: true
+  belongs_to :order, required: false, class_name: "Order", foreign_key: "order_id"
   belongs_to :option
   validates(:name, presence: true) 
   validates(:price, presence: true) 

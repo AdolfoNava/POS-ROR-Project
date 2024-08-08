@@ -60,7 +60,6 @@ class OrdersController < ApplicationController
     end
     
     @order.items.each do |item|
-      @order.price+=item.price 
       item.order_id = id + 1
     end
     respond_to do |format|
