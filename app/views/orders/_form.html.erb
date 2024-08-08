@@ -1,8 +1,7 @@
-<%= form_with(model: order) do |form| %>
+<%= form_with(model: order, local: true, class: "form-horizontal") do |form| %>
   <% if order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h4>
       <ul>
         <% order.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,58 +9,79 @@
       </ul>
     </div>
   <% end %>
-
-  <%= field_set_tag "Items", id: "items-selected" do %>
+  <%= field_set_tag "Items", class: "list-group list-group-checkable list-group-flush", id: "items-selected" do %>
+    <div class="row mb-2">
+      <div class="col-md-2">
+        <h6 class="h6 text-center">Quantity</h6>
+      </div>
+      <div class="col-md-8">
+        <h6 class="h6 text-center">Name</h6>
+      </div>
+      <div class="col-md-2">
+        <h6 class="h6 text-center">Price</h6>
+      </div>
+    </div>
     <%= form.fields_for :items do |item_form| %>
 
       <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
-      <%= item_form.text_field :name, value: item_form.object.option.name %>
-      <%= item_form.number_field :quantity, value: 1  %>
-      <%= item_form.number_field :price,  step: :any , value: item_form.object.option.base_price %>
-
+      <div class="row mb-2">
+        <div class="col-md-2">
+          <%= item_form.number_field :quantity, value: item_form.object.quantity, class: "form-control" %>
+        </div>
+        <div class="col-md-8">
+          <%= item_form.text_field :name, value: item_form.object.name, class: "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= item_form.number_field :price, step: :any, value: item_form.object.price, class: "form-control  text-end" %>
+        </div>
+      </div>
     <% end %>
-
   <% end %>
-  
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price, step: :any%>
+
+  <div class="form-group">
+    <%= form.label :price, class: "form-label" %>
+    <%= form.number_field :price, step: :any, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :due_date, style: "display: block" %>
-    <%= form.date_field :due_date %>
+  <div class="form-group">
+    <%= form.label :due_date, class: "form-label" %>
+    <%= form.date_field :due_date, class: "form-control" %>
   </div>
-  <%if params[:cust_id]%>
+
+  <% if params[:cust_id] %>
     <%= form.hidden_field :customer_id, value: params[:cust_id] %>
   <% else %>
     <%= form.hidden_field :customer_id, value: order.customer_id %>
   <% end %>
 
   <%= form.hidden_field :employee_id, value: current_user.id %>
+
   <% if params[:cust_id].present? || @new %>
-    <%= form.hidden_field :status, value: Order.statuses[:created]%>
+    <%= form.hidden_field :status, value: Order.statuses[:created] %>
   <% else %>
-    <%= form.label :status, "Order status: "%>
-    <%= form.select :status, @filtered_options.keys.map { |k| [k.humanize, k] } %>
+    <div class="form-group">
+      <%= form.label :status, "Order status:", class: "form-label" %>
+      <%= form.select :status, @filtered_options.keys.map { |k| [k.humanize, k] }, {}, class: "form-control" %>
+    </div>
   <% end %>
 
-  <div>
-    <%= form.label :pre_paid, style: "display: block" %>
-    <%= form.number_field :pre_paid, step: :any %>
+  <div class="form-group">
+    <%= form.label :pre_paid, class: "form-label" %>
+    <%= form.number_field :pre_paid, step: :any, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :items_count, style: "display: block" %>
-    <%= form.number_field :items_count %>
+  <div class="form-group">
+    <%= form.label :items_count, class: "form-label" %>
+    <%= form.number_field :items_count, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group mt-4">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
-<%=javascript_tag do %>
-  let count = <%=@order.items.count%>
+
+<%= javascript_tag do %>
+  let count = <%= @order.items.count %>;
 <% end %>
 
-<%=javascript_include_tag 'orders' %>
+<%= javascript_include_tag 'orders' %>
