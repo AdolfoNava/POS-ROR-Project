@@ -2,7 +2,7 @@ class CustomerModerationService
   attr_reader :reasons
 
   def initialize(input)
-    @input = input.downcase
+    @input = input
     @flagged = false
     @reasons = []
   end
@@ -21,13 +21,14 @@ class CustomerModerationService
 
   private
   def auditNumber
-    if !@input.numeric?
+    if !@input.is_a?(Integer) 
       @flagged = true
       @reasons << "Failed to input a valid number #{@input}"
     end
   end
   def auditEmail
-    if !@input =~ URI::MailTo::EMAIL_REGEXP
+    @input = @input.downcase
+    unless @input.downcase =~ URI::MailTo::EMAIL_REGEXP
       @flagged = true
       @reasons << "Failed to input a valid Email #{@input}"
     end
