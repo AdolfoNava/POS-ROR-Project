@@ -16,7 +16,7 @@
 #
 class Order < ApplicationRecord
   has_many  :items, class_name: "Item", foreign_key: "order_id", dependent: :destroy
-  belongs_to :customer, required: true, class_name: "Customer", foreign_key: "customer_id", counter_cache: true
+  belongs_to :customer, required: true, class_name: "Customer", foreign_key: "customer_id"
   belongs_to :employee, required: true, class_name: "User", foreign_key: "employee_id"
   
   enum payment_method: { cash: "cash", card: "card", phone: "phone", check: "check" }
