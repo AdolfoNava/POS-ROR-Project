@@ -46,7 +46,7 @@
 
   <div class="form-group">
     <%= form.label :due_date, class: "form-label" %>
-    <%= form.date_field :due_date, class: "form-control" %>
+    <%= form.date_field :due_date, class: "form-control", required: true %>
   </div>
 
   <% if params[:cust_id] %>

@@ -1,4 +1,5 @@
 function addToOrder(option) {
+  event.preventDefault();
   let elements = $(`#option-${option}`).children("p");
   console.log($(elements[0]).text());
   console.log($(elements[1]).text());
@@ -49,6 +50,7 @@ function addToOrder(option) {
   count++;
   calculateTotal();
 }
+
 function calculateTotal() {
   const items = document.querySelectorAll('.item');
   let grandTotal = 0;
