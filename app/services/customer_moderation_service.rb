@@ -21,7 +21,7 @@ class CustomerModerationService
 
   private
   def auditNumber
-    if !@input.is_a?(Integer) 
+    unless @input =~ /\A\d+\z/
       @flagged = true
       @reasons << "Failed to input a valid number #{@input}"
     end
