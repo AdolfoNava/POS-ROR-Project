@@ -10,3 +10,5 @@ window.$ = jquery;
 import Rails from "@rails/ujs"
 import "./payment";
 Rails.start();
+
+import "virtual-keyboard"

@@ -11,13 +11,13 @@
   <% end %>
   <%= field_set_tag "Items", class: "list-group list-group-checkable list-group-flush", id: "items-selected" do %>
     <div class="row mb-2">
-      <div class="col-md-2">
+      <div class="col-2">
         <h6 class="h6 text-center">Quantity</h6>
       </div>
-      <div class="col-md-8">
+      <div class="col-8">
         <h6 class="h6 text-center">Name</h6>
       </div>
-      <div class="col-md-2">
+      <div class="col-2">
         <h6 class="h6 text-center">Price</h6>
       </div>
     </div>
@@ -25,14 +25,14 @@
       <div class="item">
         <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
         <div class="row mb-2">
-          <div class="col-md-2">
+          <div class="col-2">
             <%= item_form.number_field :quantity, value: item_form.object.quantity, class: "form-control" , oninput: "calculateTotal()"%>
           </div>
-          <div class="col-md-8">
+          <div class="col-8">
             <%= item_form.text_field :name, value: item_form.object.name, class: "form-control" %>
           </div>
-          <div class="col-md-2">
-            <%= item_form.number_field :price, step: :any, value: item_form.object.price, class: "form-control  text-end", oninput: "calculateTotal()" %>
+          <div class="col-2">
+            <%= item_form.text_field :price, step: :any, value: item_form.object.price, class: "form-control  text-end", oninput: "calculateTotal()" %>
           </div>
         </div>
       </div>

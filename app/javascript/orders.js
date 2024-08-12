@@ -5,7 +5,7 @@ function addToOrder(option) {
   console.log($(elements[1]).text());
 
   let div = $('<div>').addClass('row mb-2 item');
-  let quantityDiv = $('<div>').addClass('col-md-2')
+  let quantityDiv = $('<div>').addClass('col-2')
   let quantityInput = $('<input>')
     .attr('type', 'number')
     .attr('name', `order[items_attributes][${count}][quantity]`)
@@ -13,7 +13,7 @@ function addToOrder(option) {
     .attr('value', 1)
     .addClass("numeric integer required form-control").attr('oninput', 'calculateTotal()');
 
-  let priceDiv = $('<div>').addClass("col-md-2");
+  let priceDiv = $('<div>').addClass("col-2");
   let priceInput = $('<input>')
     .attr('type', 'number')
     .attr('name', `order[items_attributes][${count}][price]`)
@@ -25,7 +25,7 @@ function addToOrder(option) {
     .attr('name', `order[items_attributes][${count}][option_id]`)
     .attr('id', `order_items_attributes_${count}_option_id`)
     .attr('value', option);
-  let nameDiv = $('<div>').addClass('col-md-8')
+  let nameDiv = $('<div>').addClass('col-8')
   let nameInput = $('<input>')
     .attr('type', 'text')
     .attr('name', `order[items_attributes][${count}][name]`)
@@ -49,6 +49,12 @@ function addToOrder(option) {
 
   count++;
   calculateTotal();
+  $("#order_items_attributes_0_price").keyboard({
+		layout : 'num',
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		preventPaste : true,  // prevent ctrl-v and right click
+		autoAccept : true
+	});
 }
 
 function calculateTotal() {
