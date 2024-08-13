@@ -7,7 +7,13 @@ class OrdersController < ApplicationController
       {content: "Main Menu", href: main_path},
       {content: "All orders", href: :index},
     ]
-    @orders = Order.page(params[:page]).per(10)
+    # debugger
+    @o = Order.joins(:customer).page(params[:page]).per(10).ransack(params[:q])
+    @orders = @o.result
+    respond_to do | format |
+      format.html { render :index }
+      format.js
+    end
   end
 
   # GET /orders/1 or /orders/1.json
@@ -34,7 +40,7 @@ class OrdersController < ApplicationController
     @c = Customer.ransack(params[:q]) 
     @customers = @c.result 
     respond_to do |format|
-      format.html {  render :new }  # Render the index page, you can customize this if needed
+      format.html {  render :new } 
       format.js 
     end
 

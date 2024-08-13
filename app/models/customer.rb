@@ -15,7 +15,6 @@
 class Customer < ApplicationRecord
   include Customer::CustomerModeratable
   def self.ransackable_attributes(auth_object = nil)
-    # Let's allow filtering by the title and year columns; but no others
     ["phone_number", "last_name"]
   end
   has_many  :orders, class_name: "Order", foreign_key: "customer_id", dependent: :destroy

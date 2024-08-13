@@ -1,0 +1,34 @@
+<div id="orders">
+  <%= search_form_for @o, url: orders_path, remote: true do |f| %>
+    <div class="py-3">
+      <%= f.label :id_eq, "Search by Order ID" %>
+      <%= f.number_field :id_eq, class: "form-control", placeholder: "Enter ID number here... "  %>
+    </div>
+    <div>
+      <%= f.label :customer_last_name_i_cont_all, "Search by Customer Last Name" %>
+      <%= f.text_field :customer_last_name_i_cont_all, class: "form-control", placeholder: "Enter Last Name here... "  %>
+    </div>
+    <div class="pb-3">
+      <%= f.submit "Search",class: "btn btn-primary"%>
+    </div>
+  <% end %>
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <th>Customer Last Name</th>
+        <th>Item Count</th>
+        <th>Price Total Due</th>
+        <th>Due Date</th>
+        <th>Edit</th>
+        <th>Payment</th>
+      </tr>
+      <% @orders.each do |order|%>
+        <tr>
+          <%= render order %>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+  <%= paginate @orders %>
+</div>
