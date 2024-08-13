@@ -10,10 +10,7 @@ class CustomersController < ApplicationController
     ]
     @customers = Customer.page(params[:page]).per(10)
   end
-  def search_in_new_order
-    @customers = Customer.all
-    render "customers/simple_list"
-  end
+
   # GET /customers/1 or /customers/1.json
   def show
   end

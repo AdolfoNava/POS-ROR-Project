@@ -31,13 +31,19 @@ class OrdersController < ApplicationController
       {content: "Main Menu", href: main_path},
       {content: "New Order", href: "#"},
     ]
+    @c = Customer.ransack(params[:q]) 
+    @customers = @c.result 
+    respond_to do |format|
+      format.html {  render :new }  # Render the index page, you can customize this if needed
+      format.js 
+    end
+
+  end
+  def chosen
     @order = Order.new
     @options = Option.all
     @new = true
-    # @order.items.new(option: Option.first)
-    @customers = Customer.all
   end
-
   # GET /orders/1/edit
   def edit
     @breadcrumbs = [

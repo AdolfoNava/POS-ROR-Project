@@ -1,15 +1,32 @@
-<div id="customers">
-  <% @customers.each do |customer| %>
-    <%= link_to "./new/#{customer.id}" do %>
-
-      <%= render "customers/simple_info", customer: customer %>
-      <p>
-
-      <% end %>
-    </p>
+<div id="simple-list">
+  <%= search_form_for @c, url: simple_search_orders_path, remote: true do |f| %>
+    <div>
+      <%= f.label :last_name_cont, "Search by Last Name" %>
+      <%= f.text_field :last_name_cont %>
+    </div>
+    <div>
+      <%= f.label :phone_number_cont, "Search by Phone Number" %>
+      <%= f.text_field :phone_number_cont %>
+    </div>
+    <%= f.submit "Search" %>
   <% end %>
+  <div id="customers">
+    <table>
+      <thead>
+        <tr>
+          <th>Phone Number</th>
+          <th>Last Name</th>
+          <th>Orders Available</th>
+          <th>Select</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <%= render "customers/simple_info", customer: customer %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-<%#= form_for @post do |f| %>
-  <%#= f.select :person_id, Person.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
-  <%#= f.submit %>
-<%# end %>
