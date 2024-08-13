@@ -1,32 +1,32 @@
 <div id="simple-list">
   <%= search_form_for @c, url: simple_search_orders_path, remote: true do |f| %>
-    <div>
+    <div class="py-3">
       <%= f.label :last_name_cont, "Search by Last Name" %>
-      <%= f.text_field :last_name_cont %>
+      <%= f.text_field :last_name_cont, class: "form-control", placeholder: "Last Name here... "  %>
     </div>
-    <div>
+    <div class="py-3">
       <%= f.label :phone_number_cont, "Search by Phone Number" %>
-      <%= f.text_field :phone_number_cont %>
+      <%= f.text_field :phone_number_cont, class: "form-control", placeholder: "Phone number here... " %>
     </div>
-    <%= f.submit "Search" %>
+    <div class="pb-3">
+      <%= f.submit "Search",class: "btn btn-primary"%>
+    </div>
   <% end %>
-  <div id="customers">
-    <table>
-      <thead>
+  <table class="table table-bordered table-striped text-center">
+    <thead>
+      <tr>
+        <th>Phone Number</th>
+        <th>Last Name</th>
+        <th>Orders Available</th>
+        <th>Select</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
         <tr>
-          <th>Phone Number</th>
-          <th>Last Name</th>
-          <th>Orders Available</th>
-          <th>Select</th>
+          <%= render "customers/simple_info", customer: customer %>
         </tr>
-      </thead>
-      <tbody>
-        <% @customers.each do |customer| %>
-          <tr>
-            <%= render "customers/simple_info", customer: customer %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
 </div>
