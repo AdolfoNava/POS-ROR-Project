@@ -8,7 +8,13 @@ class OptionsController < ApplicationController
       {content: "Business Management", href: database_path},
       {content: "All Options", href: options_path},
     ]
-    @options = Option.all
+    @o = Option.joins(:category).page(params[:page]).per(25).ransack(params[:q])
+    @options = @o.result
+
+    respond_to do |format|
+      format.html { render :index }
+      format.js
+    end
   end
 
   # GET /options/1 or /options/1.json
@@ -20,14 +26,6 @@ class OptionsController < ApplicationController
       {content: "Option #{@option.name}", href: option_path(@option)},
     ]
   end
-
-  # def insert
-  #   @option_selected = Option.find(params[:option_id])
-  #   respond_to do |format|
-  #     format.html {redirect_back fallback_location: returning_customer_order_path(params[:cust_id]), notice: "Item Added" }
-  #     format.js
-  #   end
-  # end
 
   # GET /options/new
   def new

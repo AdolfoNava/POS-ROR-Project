@@ -23,7 +23,12 @@ class Order < ApplicationRecord
   enum status: { created: "created", in_progress: "in progress", ready: "ready", cancelled: "cancelled", completed: "completed" }
 
   accepts_nested_attributes_for :items
-
+  def self.ransackable_attributes(auth_object = nil)
+    ["id", "due_date","status"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["customer"]
+  end
   validates(:price, presence: true)
   validates(:due_date, presence: true)
 

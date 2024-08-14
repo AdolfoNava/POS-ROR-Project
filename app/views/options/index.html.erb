@@ -3,11 +3,4 @@
 <h1>Options</h1>
 <%= link_to "New option", new_option_path %>
 
-<div id="options">
-  <% @options.each do |option| %>
-    <%= render option %>
-    <p>
-      <%= link_to "Show this option", option %>
-    </p>
-  <% end %>
-</div>
+<%= render "options/list"%>

@@ -1,17 +1,17 @@
 <div id="<%= dom_id option %>">
-  <p>
-    <strong>Base price:</strong>
+  <td>
     <%= number_to_currency(option.base_price) %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Name:</strong>
+  <td>
     <%= option.name %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Category:</strong>
+  <td>
     <%= option.category.name %>
-  </p>
+  </td>
+  <td>
+    <%= link_to "Show this option", edit_option_path(option) %>
+  </td>
 
 </div>

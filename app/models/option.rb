@@ -16,6 +16,12 @@ class Option < ApplicationRecord
   validates(:name, presence: true)
   validates(:category_id, presence: true)
   
+  def self.ransackable_attributes(auth_object = nil)
+    ["name","category_id"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["category"]
+  end
   # before_validation :set_defaults
 
   # private

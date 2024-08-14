@@ -2,24 +2,4 @@
 
 <%= link_to "New order", new_order_path %>
 
-<div id="orders">
-  <table class="table table-striped table-bordered">
-    <tbody>
-      <tr>
-        <th>ID</th>
-        <th>Customer Last Name</th>
-        <th>Item Count</th>
-        <th>Price Total Due</th>
-        <th>Due Date</th>
-        <th>Edit</th>
-        <th>Payment</th>
-      </tr>
-      <% @orders.each do |order|%>
-        <tr>
-          <%= render order %>
-        </tr>
-      <%end%>
-    </tbody>
-  </table>
-</div>
-<%= paginate @orders %>
+<%= render 'orders/list_index' %>
