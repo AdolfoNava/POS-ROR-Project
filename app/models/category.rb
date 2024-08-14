@@ -9,4 +9,9 @@
 #
 class Category < ApplicationRecord
   has_many  :options, class_name: "Option", foreign_key: "name", dependent: :destroy
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
+  
 end
