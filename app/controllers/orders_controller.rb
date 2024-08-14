@@ -46,6 +46,10 @@ class OrdersController < ApplicationController
 
   end
   def chosen
+    @breadcrumbs = [
+      {content: "Main Menu", href: main_path},
+      {content: "New Order", href: "#"},
+    ]
     @order = Order.new
     @options = Option.all
     @new = true
