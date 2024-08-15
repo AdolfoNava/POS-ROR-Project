@@ -12,23 +12,25 @@
       <%= f.submit "Search",class: "btn btn-primary"%>
     </div>
   <% end %>
-  <table class="table table-striped table-bordered text-center">
-    <tbody>
-      <tr>
-        <th>ID</th>
-        <th>Customer Last Name</th>
-        <th>Item Count</th>
-        <th>Price Total Due</th>
-        <th>Due Date</th>
-        <th>Edit</th>
-        <th>Payment</th>
-      </tr>
-      <% @orders.each do |order|%>
+  <div  class="table-responsive">
+    <table class="table table-striped table-bordered text-center">
+      <tbody>
         <tr>
-          <%= render order %>
+          <th>ID</th>
+          <th>Customer Last Name</th>
+          <th>Item Count</th>
+          <th>Price Total Due</th>
+          <th>Due Date</th>
+          <th>Edit</th>
+          <th>Payment</th>
         </tr>
-      <%end%>
-    </tbody>
-  </table>
+        <% @orders.each do |order|%>
+          <tr>
+            <%= render order %>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
   <%= paginate @orders %>
 </div>
