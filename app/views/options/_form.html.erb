@@ -13,17 +13,17 @@
 
   <div>
     <%= form.label :base_price, style: "display: block" %>
-    <%= form.text_field :base_price %>
+    <%= form.text_field :base_price, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :category_id, style: "display: block" %>
-    <%= form.select :category_id, Category.all.collect { |c| [ c.name, c.id ] }, include_blank: false %>
+    <%= form.select :category_id, Category.all.collect { |c| [ c.name, c.id ] }, {include_blank: false},  {class: "form-control"} %>
   </div>
 
   <div>
