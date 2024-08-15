@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+.item div{
+  padding: 0;
+}

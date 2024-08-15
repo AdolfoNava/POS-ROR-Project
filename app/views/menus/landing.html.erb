@@ -1,24 +1,66 @@
-<%= render "shared/navbar" %>
-<h1>Valenti Cleaners</h1>
+<%#= render "shared/navbar" %>
+<h1></h1>
 
-<section id="about">
+<div class="jumbotron text-center mt-5">
+  <h1 class="display-4">Valenti Cleaners</h1>
+  <p class="lead">The new and upcoming custom Point of Sale app for chicago local businesses.</p>
+  <hr class="my-4">
+  <p>Manage your business orders, customers, and inventory with ease.</p>
+  <%= link_to "Get Started", new_user_session_path, class: "btn btn-primary btn-lg", role: "button" %>
+</div>
 
-</section>
-
-<section id="demo">
-  <div><!--
-    <iframe width="800" height="600" src="https://www.youtube.com/embed/zvmhY_pbXj4" title="Why I Left Donut" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+<div class="row text-center mt-5">
+  <div class="col-12 col-lg-4">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title display-5">1. Easy Order Management</h5>
+        <p class="card-text">Quickly create and manage orders with just a few clicks.</p>
+        <a href="#demo1" class="btn btn-outline-primary" data-bs-toggle="collapse">Learn More</a>
+      </div>
+    </div>
+    <div id="demo1" class="collapse">
+      <iframe src="https://drive.google.com/file/d/1eSk3VdQbNxbtZDhedeNOM155hlhwzzMK/preview" width="640" height="480" class="col-12"></iframe>
+    </div>
   </div>
-</section>
 
-<section id="contact">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.882998360115!2d-87.815788!3d41.8881094!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e35b523034933%3A0x1e64504fd854235e!2sValenti%20Cleaners!5e0!3m2!1sen!2sus!4v1722889088126!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  <br>
-  <p>Call the business phone number or stop by for questions about potential services</p>
-  <br>
-  <p>Location: 7623 BLDG B W Lake St, River Forest, IL 60305</p>
-  <br>
-  Business Phone number:
+  <div class="col-12 col-lg-4">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title display-5">2. Customer Updates (Coming soon)</h5>
+        <p class="card-text">Get real-time updates of your order updates and changes through sms or email</p>
+        <a href="#" class="btn btn-outline-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title display-5">3. Handle Purchases</h5>
+        <p class="card-text">Sort and finalize payments of customer's orders</p>
+        <a href="#demo3" class="btn btn-outline-primary" data-bs-toggle="collapse">Learn More</a>
+      </div>
+    </div>
+  <div id="demo3" class="collapse">
+    <iframe src="https://drive.google.com/file/d/10_s6oXjqz0XOgkb4dvvr-GnX9_sSlhiv/preview" width="640" height="480" class="col-12"></iframe>
+  </div>
+  </div>
+</div>
+<section id="about"class='jumbotron'>
+  <h2>About Us</h2>
+  <section id="contact" class="row">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.882998360115!2d-87.815788!3d41.8881094!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e35b523034933%3A0x1e64504fd854235e!2sValenti%20Cleaners!5e0!3m2!1sen!2sus!4v1722889088126!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class='col-12'></iframe>
+  </section>
 
 </section>
-<%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+<footer class="bg-light text-dark py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="mb-1">Call the business phone number or stop by for questions about potential services.</p>
+        <p class="mb-1"><strong>Location:</strong> <a href="https://www.google.com/maps?ll=41.888081,-87.815721&z=14&t=m&hl=en&gl=US&mapclient=embed&cid=2189963622670934878">7623 BLDG B W Lake St, River Forest, IL 60305</a></p>
+        <p class="mb-0"><strong>Business Phone number:</strong> <a href="tel:+17087718535">1-(708)-771-8535</a></p>
+      </div>
+    </div>
+  </div>
+</footer>

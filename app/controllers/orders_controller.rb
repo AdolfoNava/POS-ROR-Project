@@ -46,6 +46,10 @@ class OrdersController < ApplicationController
 
   end
   def chosen
+    @breadcrumbs = [
+      {content: "Main Menu", href: main_path},
+      {content: "New Order", href: "#"},
+    ]
     @order = Order.new
     @options = Option.all
     @new = true
@@ -90,7 +94,13 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to order_url(@order), notice: "Order was successfully updated." }
+        
+        if @order.completed?
+          format.html { redirect_to orders_path, notice: "Order was successfully processed." }
+        else
+          format.html { redirect_to orders_path, notice: "Order was successfully updated." }
+        end
+        
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit, status: :unprocessable_entity }

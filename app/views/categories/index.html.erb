@@ -2,13 +2,21 @@
 
 <h1>Categories</h1>
 
+<%= link_to "New category", new_category_path, class: "btn btn-info" %>
 <div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
+  <table class="table table-bordered table-striped text-center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <% @categories.each do |category| %>
+      <tr>
+        <%= render category %>
+      </tr>
+
     </p>
   <% end %>
+</table>
 </div>
-
-<%= link_to "New category", new_category_path %>

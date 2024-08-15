@@ -14,9 +14,9 @@
     <%= order.due_date %>
   </td>
   <td>
-    <%= link_to "Edit Order", edit_order_path(order.id) %>
+    <%= link_to "Edit Order", edit_order_path(order.id),class: "btn btn-secondary" %>
   </td>
   <td>
-    <%=link_to "Make Payment", payment_path(order) %>
+    <%=link_to "Make Payment", payment_path(order), class: "btn btn-success" %>
   </td>
 </div>
