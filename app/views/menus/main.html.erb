@@ -1,5 +1,5 @@
 <div class="row justify-content-around py-5">
-  <div class="col-3">
+  <div class="col-5">
     <%= link_to new_order_path do %>
       <div class="card">
         <div class="card-header text-center">
@@ -17,7 +17,7 @@
       </div>
     <% end %>
   </div>
-  <div class="col-3">
+ <!-- <div class="col-3">
     <div class="card">
       <div class="card-header text-center">
         Edit Order
@@ -32,8 +32,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-3">
+  </div>-->
+  <div class="col-5">
     <%= link_to orders_path do %>
       <div class="card">
         <div class="card-header text-center">
@@ -51,7 +51,7 @@
   </div>
 </div>
 <div class="row justify-content-around py-5">
-  <div class="col-3">
+  <div class="col-5">
     <%= link_to "database" do %>
       <div class="card">
         <div class="card-header text-center">
@@ -69,7 +69,7 @@
     <% end %>
   </div>
   <%# link_to "",  do %>
-    <div class="col-3">
+    <!--<div class="col-3">
       <div class="card">
         <div class="card-header text-center">
           Settings
@@ -84,10 +84,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
     <%# end %>
 
-    <div class="col-3">
+    <div class="col-5">
       <%= link_to destroy_user_session_path, data: { method: :delete } do %>
         <div class="card">
           <div class="card-header text-center">

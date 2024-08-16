@@ -8,7 +8,7 @@ class CustomersController < ApplicationController
       {content: "Business Management", href: database_path},
       {content: "All Customers", href: customers_path},
     ]
-    @customers = Customer.page(params[:page]).per(10)
+    @customers = Customer.joins(:orders).page(params[:page]).per(10)
   end
 
   # GET /customers/1 or /customers/1.json
@@ -44,7 +44,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+        format.html { redirect_to customers_path, notice: "Customer was successfully updated." }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -54,7 +54,7 @@ class OptionsController < ApplicationController
 
     respond_to do |format|
       if @option.save
-        format.html { redirect_to option_url(@option), notice: "Option was successfully created." }
+        format.html { redirect_to options_path, notice: "Option was successfully created." }
         format.json { render :show, status: :created, location: @option }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -67,7 +67,7 @@ class OptionsController < ApplicationController
   def update
     respond_to do |format|
       if @option.update(option_params)
-        format.html { redirect_to option_url(@option), notice: "Option was successfully updated." }
+        format.html { redirect_to options_path, notice: "Option was successfully updated." }
         format.json { render :show, status: :ok, location: @option }
       else
         format.html { render :edit, status: :unprocessable_entity }
