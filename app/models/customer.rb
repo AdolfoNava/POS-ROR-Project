@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: customers
@@ -14,12 +16,12 @@
 #
 class Customer < ApplicationRecord
   include Customer::CustomerModeratable
-  def self.ransackable_attributes(auth_object = nil)
-    ["phone_number", "last_name"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[phone_number last_name]
   end
-  has_many  :orders, class_name: "Order", foreign_key: "customer_id", dependent: :destroy
-  
+  has_many :orders, class_name: 'Order', foreign_key: 'customer_id', dependent: :destroy
+
   validates(:first_name, presence: true)
   validates(:last_name, presence: true)
-  validates(:phone_number, presence: true, numericality: {only_integer: true})
+  validates(:phone_number, presence: true, numericality: { only_integer: true })
 end
