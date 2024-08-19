@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
 #
 #  id                     :integer          not null, primary key
 #  admin                  :boolean
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
+#  email                  :string           default(''), not null
+#  encrypted_password     :string           default(''), not null
 #  name                   :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -22,5 +24,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many  :orders, class_name: "Order", foreign_key: "employee_id", dependent: :nullify
+  has_many :orders, class_name: 'Order', foreign_key: 'employee_id', dependent: :nullify
 end

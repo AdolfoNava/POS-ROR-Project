@@ -1,4 +1,6 @@
-class CustomerModerationService
+# frozen_string_literal: true
+
+class CustomerModerationService # rubocop:disable Style/Documentation
   attr_reader :reasons
 
   def initialize(input)
@@ -7,30 +9,34 @@ class CustomerModerationService
     @reasons = []
   end
 
-  def callNumber
+  def callNumber # rubocop:disable Naming/MethodName
     auditNumber
     self
   end
-  def callEmail
+
+  def callEmail # rubocop:disable Naming/MethodName
     auditEmail
     self
   end
+
   def flagged?
     @flagged
   end
 
   private
-  def auditNumber
-    unless @input =~ /\A\d+\z/
-      @flagged = true
-      @reasons << "Failed to input a valid number #{@input}"
-    end
+
+  def auditNumber # rubocop:disable Naming/MethodName
+    return if @input =~ /\A\d+\z/
+
+    @flagged = true
+    @reasons << "Failed to input a valid number #{@input}"
   end
-  def auditEmail
+
+  def auditEmail # rubocop:disable Naming/MethodName
     @input = @input.downcase
-    unless @input.downcase =~ URI::MailTo::EMAIL_REGEXP
-      @flagged = true
-      @reasons << "Failed to input a valid Email #{@input}"
-    end
+    return if @input.downcase =~ URI::MailTo::EMAIL_REGEXP
+
+    @flagged = true
+    @reasons << "Failed to input a valid Email #{@input}"
   end
 end

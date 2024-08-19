@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: items
@@ -12,11 +14,10 @@
 #  order_id   :integer
 #
 class Item < ApplicationRecord
-
-  belongs_to :order, required: false, class_name: "Order", foreign_key: "order_id"
+  belongs_to :order, required: false, class_name: 'Order', foreign_key: 'order_id'
   belongs_to :option
-  validates(:name, presence: true) 
-  validates(:price, presence: true) 
-  validates(:quantity, presence: true) 
-  validates(:order_id, presence: true)  
+  validates(:name, presence: true)
+  validates(:price, presence: true)
+  validates(:quantity, presence: true)
+  validates(:order_id, presence: true)
 end

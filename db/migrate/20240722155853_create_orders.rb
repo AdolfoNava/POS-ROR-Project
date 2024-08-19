@@ -1,5 +1,7 @@
-class CreateOrders < ActiveRecord::Migration[7.1]
-  def change
+# frozen_string_literal: true
+
+class CreateOrders < ActiveRecord::Migration[7.1] # rubocop:disable Style/Documentation
+  def change # rubocop:disable Metrics/MethodLength
     create_table :orders do |t|
       t.float :price
       t.date :due_date

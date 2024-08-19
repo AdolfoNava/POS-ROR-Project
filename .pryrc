@@ -1,7 +1,9 @@
-Pry.config.print = proc do |output, value, _pry_|
+# frozen_string_literal: true
+
+Pry.config.print = proc do |output, value, _pry_| # rubocop:disable Lint/UnderscorePrefixedVariableName
   case value
   when ActiveRecord::Relation
-    output.puts "=> #{value.to_s}"
+    output.puts "=> #{value}"
   else
     Pry::ColorPrinter.default(output, value, _pry_)
   end

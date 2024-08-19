@@ -1,22 +1,26 @@
-module Customer::CustomerModeratable
-  extend ActiveSupport::Concern
+# frozen_string_literal: true
 
-  included do
-    validate :permissible_content
-  end
+module Customer
+  module CustomerModeratable # rubocop:disable Style/Documentation
+    extend ActiveSupport::Concern
 
-  private
-
-  def permissible_content
-    phone_number_moderation_service = CustomerModerationService.new(phone_number).callNumber
-    if phone_number_moderation_service.flagged?
-      phone_number_moderation_service.reasons.each do |reason|
-        errors.add(:phone_number, reason)
-      end
+    included do
+      validate :permissible_content
     end
 
-    email_moderation_service = CustomerModerationService.new(email).callEmail
-    if email_moderation_service.flagged?
+    private
+
+    def permissible_content # rubocop:disable Metrics/MethodLength
+      phone_number_moderation_service = CustomerModerationService.new(phone_number).callNumber
+      if phone_number_moderation_service.flagged?
+        phone_number_moderation_service.reasons.each do |reason|
+          errors.add(:phone_number, reason)
+        end
+      end
+
+      email_moderation_service = CustomerModerationService.new(email).callEmail
+      return unless email_moderation_service.flagged?
+
       email_moderation_service.reasons.each do |reason|
         errors.add(:email, reason)
       end

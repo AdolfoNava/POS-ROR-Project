@@ -1,4 +1,6 @@
-class CreateItems < ActiveRecord::Migration[7.1]
+# frozen_string_literal: true
+
+class CreateItems < ActiveRecord::Migration[7.1] # rubocop:disable Style/Documentation
   def change
     create_table :items do |t|
       t.integer :quantity
