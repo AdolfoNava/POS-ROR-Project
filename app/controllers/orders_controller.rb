@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
       {content: "Main Menu", href: main_path},
       {content: "All orders", href: :index},
     ]
-    # debugger
     @o = Order.joins(:customer).page(params[:page]).per(10).ransack(params[:q])
     @orders = @o.result
     respond_to do | format |
@@ -137,7 +136,5 @@ class OrdersController < ApplicationController
                     :pre_paid,
                     :items_count,
                     items_attributes: [:id, :quantity, :price, :name, :option_id])
-
-
     end
 end

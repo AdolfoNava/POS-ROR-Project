@@ -22,6 +22,4 @@ Rails.application.routes.draw do
       get 'search_customers/' => 'orders#new', as: :simple_search
     end
   end
-  # resources :items
-
 end

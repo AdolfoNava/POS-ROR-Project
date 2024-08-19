@@ -1,4 +1,5 @@
 class MenusController < ApplicationController
+  skip_before_action(:authenticate_user!, {:only => [:landing]})
   def landing
     render "menus/landing"
   end
