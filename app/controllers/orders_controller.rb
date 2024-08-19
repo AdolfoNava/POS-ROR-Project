@@ -1,15 +1,16 @@
-class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show payment edit update destroy ]
+# The main class of the whole application
+class OrdersController < ApplicationController # rubocop:disable Metrics/ClassLength
+  before_action :set_order, only: %i[show payment edit update destroy]
 
   # GET /orders or /orders.json
   def index
     @breadcrumbs = [
-      {content: "Main Menu", href: main_path},
-      {content: "All orders", href: :index},
+      { content: 'Main Menu', href: main_path },
+      { content: 'All orders', href: :index }
     ]
     @o = Order.joins(:customer).page(params[:page]).per(10).ransack(params[:q])
     @orders = @o.result
-    respond_to do | format |
+    respond_to do |format|
       format.html { render :index }
       format.js
     end
@@ -18,68 +19,71 @@ class OrdersController < ApplicationController
   # GET /orders/1 or /orders/1.json
   def show
     @breadcrumbs = [
-      {content: "Main Menu", href: main_path},
-      {content: "All Orders", href: orders_path},
-      {content: "Showing Order", href: payment_url(@order.id)},
+      { content: 'Main Menu', href: main_path },
+      { content: 'All Orders', href: orders_path },
+      { content: 'Showing Order', href: payment_url(@order.id) }
     ]
   end
+
   def payment
     @breadcrumbs = [
-      {content: "Main Menu", href: main_path},
-      {content: "All Orders", href: orders_path},
-      {content: "Paying for Order", href: payment_url(@order.id)},
+      { content: 'Main Menu', href: main_path },
+      { content: 'All Orders', href: orders_path },
+      { content: 'Paying for Order', href: payment_url(@order.id) }
     ]
   end
+
   # GET /orders/new
   def new
     @breadcrumbs = [
-      {content: "Main Menu", href: main_path},
-      {content: "New Order", href: "#"},
+      { content: 'Main Menu', href: main_path },
+      { content: 'New Order', href: '#' }
     ]
-    @c = Customer.ransack(params[:q]) 
-    @customers = @c.result 
+    @c = Customer.ransack(params[:q])
+    @customers = @c.result
     respond_to do |format|
-      format.html {  render :new } 
-      format.js 
+      format.html { render :new }
+      format.js
     end
-
   end
+
   def chosen
     @breadcrumbs = [
-      {content: "Main Menu", href: main_path},
-      {content: "New Order", href: "#"},
+      { content: 'Main Menu', href: main_path },
+      { content: 'New Order', href: '#' }
     ]
     @order = Order.new
     @options = Option.all
     @new = true
   end
+
   # GET /orders/1/edit
   def edit
     @breadcrumbs = [
-      {content: "Main Menu", href: main_path},
-      {content: "Edit Order", href: order_url(@order)},
+      { content: 'Main Menu', href: main_path },
+      { content: 'Edit Order', href: order_url(@order) }
     ]
     @options = Option.all
     @all_options = Order.statuses
-    @excluded_keys = ["created", "completed"] 
+    @excluded_keys = %w[created completed]
     @filtered_options = @all_options.reject { |_, v| @excluded_keys.include?(v) }
   end
 
   # POST /orders or /orders.json
-  def create
+  def create # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
     @order = Order.new(order_params)
-    if Order.all.last.id != nil
-      id = Order.all.last.id
-    else
-      id = 0
-    end
-    
+    id = if !Order.all.last.id.nil?
+           Order.all.last.id
+         else
+           0
+         end
+
     @order.items.each do |item|
       item.order_id = id + 1
     end
     respond_to do |format|
       if @order.save
-        format.html { redirect_to main_path, notice: "Order was successfully created." }
+        format.html { redirect_to main_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         @options = Option.all
@@ -90,16 +94,16 @@ class OrdersController < ApplicationController
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json
-  def update
+  def update # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
     respond_to do |format|
       if @order.update(order_params)
-        
+
         if @order.completed?
-          format.html { redirect_to orders_path, notice: "Order was successfully processed." }
+          format.html { redirect_to orders_path, notice: 'Order was successfully processed.' }
         else
-          format.html { redirect_to orders_path, notice: "Order was successfully updated." }
+          format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
         end
-        
+
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -113,28 +117,29 @@ class OrdersController < ApplicationController
     @order.destroy!
 
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
+      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def order_params
-      params.require(:order)
-            .permit(:price,
-                    :due_date,
-                    :customer_id,
-                    :employee_id,
-                    :payment_method,
-                    :status,
-                    :pre_paid,
-                    :items_count,
-                    items_attributes: [:id, :quantity, :price, :name, :option_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def order_params
+    params.require(:order)
+          .permit(:price,
+                  :due_date,
+                  :customer_id,
+                  :employee_id,
+                  :payment_method,
+                  :status,
+                  :pre_paid,
+                  :items_count,
+                  items_attributes: %i[id quantity price name option_id])
+  end
 end

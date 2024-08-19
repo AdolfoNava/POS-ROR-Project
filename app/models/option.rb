@@ -10,17 +10,17 @@
 #  category_id :integer
 #
 class Option < ApplicationRecord
-
-  belongs_to :category, required: true, class_name: "Category", foreign_key: "category_id"
+  belongs_to :category, required: true, class_name: 'Category', foreign_key: 'category_id'
   has_many :items
   validates(:name, presence: true)
   validates(:category_id, presence: true)
-  
+
   def self.ransackable_attributes(auth_object = nil)
-    ["name","category_id"]
+    %w[name category_id]
   end
+
   def self.ransackable_associations(auth_object = nil)
-    ["category"]
+    ['category']
   end
   # before_validation :set_defaults
 

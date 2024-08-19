@@ -15,7 +15,7 @@ RailsAdmin.config do |config|
   ## == Pundit ==
   # config.authorize_with :pundit
 
-  config.audit_with :paper_trail, 'User', 'PaperTrail::Version' 
+  config.audit_with :paper_trail, 'User', 'PaperTrail::Version'
 
   ### More at https://github.com/railsadminteam/rails_admin/wiki/Base-configuration
 
