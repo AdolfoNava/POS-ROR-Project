@@ -1,27 +1,3 @@
 <h1>Editing customer: <%= @customer.last_name %></h1>
 
 <%= render "form", customer: @customer %>
-
-<br>
-
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-  Delete Customer
-</button>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="deleteModalLabel">Are you sure?</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Deleting this will remove orders 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= button_to "Destroy this customer", @customer, class: "btn btn-danger",method: :delete %>
-      </div>
-    </div>
-  </div>
-</div>

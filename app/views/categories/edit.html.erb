@@ -2,6 +2,26 @@
 
 <%= render "form", category: @category %>
 
-<br>
+<div class="py-2">
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+    Delete Category
+  </button>
+</div>
 
-<%= button_to "Destroy this category", @category, class: "btn btn-danger",method: :delete %>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Are you sure?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body alert alert-danger">
+        Deleting this will remove all options along with the category.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= button_to "Destroy this Category", @category, class: "btn btn-danger",method: :delete %>
+      </div>
+    </div>
+  </div>
+</div>
