@@ -15,7 +15,7 @@ unless Rails.env.production?
     Category.create(name: "Dry")
     Option.create(name: "Shirt", base_price: 3.0, category: Category.first)
     Option.create(name: "Pants", base_price: 5.0, category: Category.last)
-    User.create(admin: true, email: "admin@example.com", name: "TEST")
+    User.create(admin: true, email: "admin@example.com", name: "TEST", password: "password")
     Customer.create(first_name: "Test", last_name: "User")
   end
 end
