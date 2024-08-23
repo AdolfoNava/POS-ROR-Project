@@ -23,6 +23,7 @@
     </div>
     <%= form.fields_for :items do |item_form| %>
       <div class="item ">
+        <%index = item_form.index %>
         <%= item_form.hidden_field :option_id, value: item_form.object.option_id %>
         <div class="row mb-2 justify-content-around">
           <div class="col-2">
@@ -34,6 +35,7 @@
           <div class="col-2">
             <%= item_form.number_field :price, step: :any, value: item_form.object.price, class: "form-control  text-end", oninput: "calculateTotal()",step: "0.01" %>
           </div>
+          <input type="color" onchange="colorInsert(<%=index%>)" id="color_choice_<%=index%>" value="#ff0000" class="form-control form-control-color" >
         </div>
       </div>
     <% end %>
@@ -84,5 +86,5 @@
 <%= javascript_tag do %>
   let count = <%= @order.items.count %>;
 <% end %>
-
+<%= javascript_include_tag 'ntc' %>
 <%= javascript_include_tag 'orders' %>

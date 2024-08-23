@@ -36,22 +36,34 @@ function addToOrder(option) {
     .attr('value', $(elements[0]).text())
     .addClass("string required form-control");
 
-  let colorPicker = $('<input>');
+  let colorPicker = $('<input>')
+    .attr('type', 'color')
+    .attr('onchange', `colorInsert(${count})`)
+    .attr('id', `color_choice_${count}`)
+    .attr('value', '#ff0000')
+    .addClass('form-control form-control-color');
 
-  let colorConfirmer = $('<input>');
   quantityDiv.append(quantityInput);
   div.append(quantityDiv);
-  
+
   nameDiv.append(nameInput);
   div.append(nameDiv);
   div.append(optioninput);
   priceDiv.append(priceInput)
   div.append(priceDiv);
+  div.append(colorPicker);
 
   $("#items-selected").append(div);
 
   count++;
   calculateTotal();
+}
+
+function colorInsert(c) {
+  var call = $(`#color_choice_${c}`).val();
+  var val = ntc.name(`${call}`);
+  var currentName = $(`#order_items_attributes_${c}_name`).val();
+  $(`#order_items_attributes_${c}_name`).val(`${currentName}(${val[1]})`);
 }
 
 function calculateTotal() {
