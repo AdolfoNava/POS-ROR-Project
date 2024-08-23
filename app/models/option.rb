@@ -22,6 +22,9 @@ class Option < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ['category']
   end
+
+  # get rid of unused code rather than just commenting it out
+
   # before_validation :set_defaults
 
   # private

@@ -1,3 +1,5 @@
+# the issue in `app/services/customer_moderation_service.rb` affects this file as well
+
 module Customer::CustomerModeratable
   extend ActiveSupport::Concern
 

@@ -71,6 +71,7 @@ class OrdersController < ApplicationController # rubocop:disable Metrics/ClassLe
 
   # POST /orders or /orders.json
   def create # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+    # code comments could help clarify this conditional - currently unclear what exactly it's doing/for
     @order = Order.new(order_params)
     id = if !Order.all.last.id.nil?
            Order.all.last.id

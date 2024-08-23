@@ -1,3 +1,5 @@
+# there's an issue in this file that prevents `rake sample_data` from completing successfully.
+
 class CustomerModerationService
   attr_reader :reasons
 
